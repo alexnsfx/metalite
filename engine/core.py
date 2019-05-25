@@ -1,20 +1,8 @@
+from engine.config import DEFAULT_CONFIG
+import engine.actions
+
+
 class Engine:
-    ATTACK_TOWER = "attack_tower"
-    LEVEL_UP_HERO = "level_up_hero"
-    BUY_SHARDS = "buy_shards"
-
-    DEFAULT_CONFIG = {
-        "start_hero_lvl": 1,
-        "start_shards": 0,
-        "start_currency": 0,
-        "n_towers_per_level": 10,
-        "currency_reward": 10,
-        "shard_reward": 5,
-        "shards_per_hero_level": 10,
-        "shard_bundle_price": 100,
-        "shard_bundle_amount": 20
-    }
-
     def __init__(self, config=DEFAULT_CONFIG):
         self.config = self._safe_config(config)
         self.towers_destroyed = 0
@@ -25,7 +13,7 @@ class Engine:
 
     def _safe_config(self, config):
         safe_config = {}
-        for key, default_value in self.DEFAULT_CONFIG.items():
+        for key, default_value in DEFAULT_CONFIG.items():
             value = config[key]
             if (value is None) or (value < 0):
                 value = default_value
@@ -44,20 +32,20 @@ class Engine:
         self.currency = self.config["start_currency"]
 
     def action_space(self):
-        actions = [self.ATTACK_TOWER]
+        actions = [engine.actions.ATTACK_TOWER]
 
         if self.can_level_up():
-            actions.append(self.LEVEL_UP_HERO)
+            actions.append(engine.actions.LEVEL_UP_HERO)
 
         if self.can_buy_shards():
-            actions.append(self.BUY_SHARDS)
+            actions.append(engine.actions.BUY_SHARDS)
 
         return actions
 
     def step(self, action):
-        if action == self.BUY_SHARDS:
+        if action == engine.actions.BUY_SHARDS:
             return self.buy_shards()
-        elif action == self.LEVEL_UP_HERO:
+        elif action == engine.actions.LEVEL_UP_HERO:
             return self.level_up_hero()
         else:
             return self.attack_tower()

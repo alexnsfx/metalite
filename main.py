@@ -1,4 +1,6 @@
 from engine.core import Engine
+import engine.actions
+
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -33,13 +35,13 @@ def heuristic_random(actions, game_state):
 
 
 def heuristic_greedy(actions, game_state):
-    if Engine.LEVEL_UP_HERO in actions:
-        return Engine.LEVEL_UP_HERO
+    if engine.actions.LEVEL_UP_HERO in actions:
+        return engine.actions.LEVEL_UP_HERO
 
-    if Engine.BUY_SHARDS in actions:
-        return Engine.BUY_SHARDS
+    if engine.actions.BUY_SHARDS in actions:
+        return engine.actions.BUY_SHARDS
 
-    return Engine.ATTACK_TOWER
+    return engine.actions.ATTACK_TOWER
 
 
 def main():
