@@ -1,5 +1,5 @@
-from engine.config import DEFAULT_CONFIG
-import engine.actions
+from metalite.config import DEFAULT_CONFIG
+import metalite.actions
 
 
 class Engine:
@@ -32,20 +32,20 @@ class Engine:
         self.currency = self.config["start_currency"]
 
     def action_space(self):
-        actions = [engine.actions.ATTACK_TOWER]
+        actions = [metalite.actions.ATTACK_TOWER]
 
         if self.can_level_up():
-            actions.append(engine.actions.LEVEL_UP_HERO)
+            actions.append(metalite.actions.LEVEL_UP_HERO)
 
         if self.can_buy_shards():
-            actions.append(engine.actions.BUY_SHARDS)
+            actions.append(metalite.actions.BUY_SHARDS)
 
         return actions
 
     def step(self, action):
-        if action == engine.actions.BUY_SHARDS:
+        if action == metalite.actions.BUY_SHARDS:
             return self.buy_shards()
-        elif action == engine.actions.LEVEL_UP_HERO:
+        elif action == metalite.actions.LEVEL_UP_HERO:
             return self.level_up_hero()
         else:
             return self.attack_tower()

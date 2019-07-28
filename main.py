@@ -1,5 +1,5 @@
-from engine.core import Engine
-import engine.actions
+from metalite.core import Engine
+import metalite.actions
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -35,13 +35,13 @@ def heuristic_random(actions, game_state):
 
 
 def heuristic_greedy(actions, game_state):
-    if engine.actions.LEVEL_UP_HERO in actions:
-        return engine.actions.LEVEL_UP_HERO
+    if metalite.actions.LEVEL_UP_HERO in actions:
+        return metalite.actions.LEVEL_UP_HERO
 
-    if engine.actions.BUY_SHARDS in actions:
-        return engine.actions.BUY_SHARDS
+    if metalite.actions.BUY_SHARDS in actions:
+        return metalite.actions.BUY_SHARDS
 
-    return engine.actions.ATTACK_TOWER
+    return metalite.actions.ATTACK_TOWER
 
 
 def main():
