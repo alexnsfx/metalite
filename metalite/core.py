@@ -26,7 +26,7 @@ class Engine:
         return safe_config
 
     def reset(self):
-        self.towers_destroyed = 0
+        self.towers_destroyed = self.config["start_towers_destroyed"]
         self.hero_lvl = self.config["start_hero_lvl"]
         self.shards = self.config["start_shards"]
         self.currency = self.config["start_currency"]

@@ -1,4 +1,5 @@
 DEFAULT_CONFIG = {
+    "start_towers_destroyed": 0,
     "start_hero_lvl": 1,
     "start_shards": 0,
     "start_currency": 0,
